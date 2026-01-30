@@ -1,85 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import ContractDataForm from '@/components/ContractDataForm';
-import SMSTemplateEditor from '@/components/SMSTemplateEditor';
-import SMSPreview from '@/components/SMSPreview';
+import ListUploader from '@/components/ListUploader';
 import JourneyFlowchart from '@/components/JourneyFlowchart';
-import { ContractData } from '@/types/contract';
-
-const MERGE_FIELDS = [
-  'customerName',
-  'customerPhone',
-  'contractId',
-  'vehicleMake',
-  'vehicleModel',
-  'pickupDate',
-  'returnDate',
-  'pickupLocation',
-];
 
 export default function DemoPage() {
-  const [contractData, setContractData] = useState<ContractData>({
-    customerName: '',
-    customerPhone: '',
-    contractId: '',
-    vehicleMake: '',
-    vehicleModel: '',
-    pickupDate: '',
-    returnDate: '',
-    pickupLocation: '',
-  });
-
-  const [template, setTemplate] = useState(
-    'Hi {{customerName}}, your offhire for {{vehicleMake}} {{vehicleModel}} (Contract: {{contractId}}) is scheduled for {{returnDate}} at {{pickupLocation}}. Reply CONFIRM to proceed.'
-  );
-
-  const [isSending, setIsSending] = useState(false);
-  const [sendResult, setSendResult] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
-
-  const handleSend = async () => {
-    setIsSending(true);
-    setSendResult(null);
-
-    // Replace merge fields in template
-    const message = template.replace(/\{\{(\w+)\}\}/g, (match, field) => {
-      return contractData[field as keyof ContractData] || match;
-    });
-
-    try {
-      const response = await fetch('/api/send-sms', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phone: contractData.customerPhone,
-          message,
-          dataFields: contractData,
-        }),
-      });
-
-      const result = await response.json();
-
-      setSendResult({
-        success: result.success,
-        message: result.success
-          ? 'SMS sent successfully!'
-          : result.error || 'Failed to send SMS',
-      });
-    } catch (error) {
-      setSendResult({
-        success: false,
-        message: error instanceof Error ? error.message : 'Network error',
-      });
-    } finally {
-      setIsSending(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
@@ -90,7 +14,7 @@ export default function DemoPage() {
                 SMS Demo - Offhire Flow
               </h1>
               <p className="text-sm text-gray-500 mt-1">
-                Test the SMS notification flow for vehicle offhire
+                Upload offhire lists to Iterable for SMS notifications
               </p>
             </div>
             <a
@@ -104,32 +28,26 @@ export default function DemoPage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left column - Contract form */}
-          <div className="lg:col-span-2 space-y-6">
-            <ContractDataForm
-              onDataChange={setContractData}
-              initialData={contractData}
-            />
-
-            <SMSTemplateEditor
-              value={template}
-              onChange={setTemplate}
-              availableMergeFields={MERGE_FIELDS}
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left column - List uploader */}
+          <div>
+            <ListUploader />
           </div>
 
-          {/* Right column - Preview and Journey */}
-          <div className="space-y-6">
-            <SMSPreview
-              template={template}
-              data={contractData}
-              onSend={handleSend}
-              isSending={isSending}
-              sendResult={sendResult}
-            />
+          {/* Right column - Journey flow */}
+          <div>
+            <JourneyFlowchart currentStep="offhire-request" />
 
-            <JourneyFlowchart currentStep="scheduled-sms" />
+            {/* Info box */}
+            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-medium text-blue-800 mb-2">How it works</h3>
+              <ol className="text-sm text-blue-700 space-y-2 list-decimal list-inside">
+                <li>Upload a CSV with offhire customer data</li>
+                <li>A new list is created in Iterable</li>
+                <li>Users are upserted (existing users updated)</li>
+                <li>Trigger SMS campaigns from Iterable using the list</li>
+              </ol>
+            </div>
           </div>
         </div>
       </main>
