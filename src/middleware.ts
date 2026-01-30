@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  // Auth disabled for development - uncomment below to enable
+  return NextResponse.next();
+
+  /*
   const authHeader = request.headers.get('authorization');
 
   if (!authHeader) {
@@ -39,6 +43,7 @@ export function middleware(request: NextRequest) {
   }
 
   return NextResponse.next();
+  */
 }
 
 export const config = {
