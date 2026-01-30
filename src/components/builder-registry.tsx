@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { Builder } from '@builder.io/react';
 import JourneyFlowchart from './JourneyFlowchart';
 import ListUploader from './ListUploader';
@@ -106,7 +107,7 @@ const ThemedFeatureCard = ({
   description: string;
   iconType?: 'upload' | 'clock' | 'check' | 'message' | 'building';
 }) => {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, React.ReactNode> = {
     upload: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />,
     clock: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />,
     check: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato, Roboto, Montserrat, Open_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { BuilderWrapper } from "@/components/BuilderWrapper";
 
 // Access Hire Australia fonts
 const lato = Lato({
@@ -54,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${lato.variable} ${roboto.variable} ${montserrat.variable} ${openSans.variable} antialiased`}
       >
-        {children}
+        <BuilderWrapper>{children}</BuilderWrapper>
         {/* Builder.io Visual Editor Script */}
         <Script
           src="https://cdn.builder.io/js/webcomponents"
