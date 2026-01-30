@@ -207,62 +207,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Brands Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="rounded-2xl p-8 md:p-12"
-            style={{
-              backgroundColor: 'var(--color-card, #ffffff)',
-              border: '1px solid var(--color-border, #e2e8f0)',
-              borderRadius: 'var(--radius-lg, 16px)'
-            }}
-          >
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-1">
-                <h3
-                  className="text-2xl font-bold mb-4"
-                  style={{
-                    color: 'var(--color-foreground, #0f172a)',
-                    fontFamily: 'var(--font-heading, system-ui)'
-                  }}
-                >
-                  Multi-Brand Support
-                </h3>
-                <p
-                  className="mb-6"
-                  style={{ color: 'var(--color-muted-foreground, #64748b)' }}
-                >
-                  This tool supports all Access Group brands with automatic theming.
-                  SMS content and branding adapts based on the selected brand, ensuring
-                  consistent customer experience across the group.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <IntegrationBadge name="Access Hire" />
-                  <IntegrationBadge name="Access Express" />
-                  <IntegrationBadge name="BigChange" />
-                  <IntegrationBadge name="Iterable" />
-                </div>
-              </div>
-              <div
-                className="w-full md:w-64 h-48 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-background-alt, #f8fafc)' }}
-              >
-                <svg
-                  className="w-24 h-24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  style={{ color: 'var(--color-primary, #2563eb)' }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section
         className="py-16"
@@ -359,21 +303,6 @@ function FeatureCard({
   );
 }
 
-// Integration Badge Component
-function IntegrationBadge({ name }: { name: string }) {
-  return (
-    <span
-      className="px-4 py-2 rounded-full text-sm font-medium"
-      style={{
-        backgroundColor: 'var(--color-background, #f8fafc)',
-        color: 'var(--color-foreground, #0f172a)',
-        border: '1px solid var(--color-border, #e2e8f0)'
-      }}
-    >
-      {name}
-    </span>
-  );
-}
 
 // ============================================================================
 // OFFHIRE PAGE - ListUploader + JourneyFlowchart
