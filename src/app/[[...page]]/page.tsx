@@ -38,7 +38,7 @@ export default async function Page({ params }: PageProps) {
 }
 
 // ============================================================================
-// HOME PAGE - Hero, Features, CTA
+// HOME PAGE - Hero, Features, CTA (Access Group Internal)
 // ============================================================================
 function HomePage() {
   return (
@@ -63,13 +63,13 @@ function HomePage() {
                   fontFamily: 'var(--font-heading, system-ui)'
                 }}
               >
-                SMS Notifications
+                Offhire SMS
               </h1>
               <p
                 className="text-sm"
                 style={{ color: 'var(--color-muted-foreground, #64748b)' }}
               >
-                Offhire Customer Communication
+                Access Group Internal Tool
               </p>
             </div>
           </div>
@@ -86,7 +86,7 @@ function HomePage() {
               className="text-sm font-medium hover:underline"
               style={{ color: 'var(--color-primary, #2563eb)' }}
             >
-              Offhire Tool
+              Upload Tool
             </Link>
           </nav>
         </div>
@@ -96,6 +96,12 @@ function HomePage() {
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
+            <p
+              className="text-sm font-medium uppercase tracking-wide mb-4"
+              style={{ color: 'var(--color-primary, #2563eb)' }}
+            >
+              Access Group Internal
+            </p>
             <h2
               className="text-4xl md:text-5xl font-bold mb-6"
               style={{
@@ -103,9 +109,9 @@ function HomePage() {
                 fontFamily: 'var(--font-heading, system-ui)'
               }}
             >
-              Automated SMS Notifications for{' '}
+              Offhire SMS{' '}
               <span style={{ color: 'var(--color-primary, #2563eb)' }}>
-                Equipment Returns
+                Notification System
               </span>
             </h2>
             <p
@@ -115,22 +121,23 @@ function HomePage() {
                 fontFamily: 'var(--font-body, system-ui)'
               }}
             >
-              Streamline your offhire process with intelligent customer notifications.
-              Keep customers informed at every step of their equipment return journey.
+              Automate customer communications for equipment returns across Access Hire,
+              Access Express, and all Access Group brands. Upload customer lists and
+              trigger SMS journeys through Iterable.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/demo"
+                href="/offhire"
                 className="px-8 py-4 rounded-lg font-semibold text-white transition-all hover:scale-105"
                 style={{
                   backgroundColor: 'var(--color-primary, #2563eb)',
                   borderRadius: 'var(--radius, 8px)'
                 }}
               >
-                Try the Demo
+                Upload Customer List
               </Link>
               <Link
-                href="/offhire"
+                href="/demo"
                 className="px-8 py-4 rounded-lg font-semibold border-2 transition-all hover:scale-105"
                 style={{
                   borderColor: 'var(--color-primary, #2563eb)',
@@ -138,7 +145,7 @@ function HomePage() {
                   borderRadius: 'var(--radius, 8px)'
                 }}
               >
-                Upload List
+                View Demo Journey
               </Link>
             </div>
           </div>
@@ -169,8 +176,8 @@ function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
               }
-              title="Upload Customer List"
-              description="Import your offhire customer data via CSV. We'll validate phone numbers and prepare personalized messages."
+              title="1. Upload CSV"
+              description="Export offhire customer data from your system. Upload the CSV with customer name, mobile number, and equipment details."
             />
 
             {/* Feature 2 */}
@@ -180,8 +187,8 @@ function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               }
-              title="Automated Journey"
-              description="SMS messages are sent at key moments: scheduling confirmation, reminders, and completion notifications."
+              title="2. Trigger Journey"
+              description="Customers are added to Iterable and enrolled in the SMS journey. Messages sent at scheduling, reminder, and completion stages."
             />
 
             {/* Feature 3 */}
@@ -191,14 +198,14 @@ function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               }
-              title="Track & Confirm"
-              description="Monitor customer responses and track equipment returns in real-time through Iterable."
+              title="3. Track Returns"
+              description="Monitor delivery status and customer responses in Iterable. Track equipment return confirmations in real-time."
             />
           </div>
         </div>
       </section>
 
-      {/* Integration Section */}
+      {/* Brands Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
@@ -218,21 +225,21 @@ function HomePage() {
                     fontFamily: 'var(--font-heading, system-ui)'
                   }}
                 >
-                  Powered by Industry Leaders
+                  Multi-Brand Support
                 </h3>
                 <p
                   className="mb-6"
                   style={{ color: 'var(--color-muted-foreground, #64748b)' }}
                 >
-                  Built on Iterable&apos;s powerful messaging platform,
-                  Builder.io&apos;s visual CMS, and deployed on Vercel&apos;s edge network
-                  for maximum reliability and speed.
+                  This tool supports all Access Group brands with automatic theming.
+                  SMS content and branding adapts based on the selected brand, ensuring
+                  consistent customer experience across the group.
                 </p>
                 <div className="flex flex-wrap gap-4">
+                  <IntegrationBadge name="Access Hire" />
+                  <IntegrationBadge name="Access Express" />
+                  <IntegrationBadge name="BigChange" />
                   <IntegrationBadge name="Iterable" />
-                  <IntegrationBadge name="Builder.io" />
-                  <IntegrationBadge name="Vercel" />
-                  <IntegrationBadge name="Next.js" />
                 </div>
               </div>
               <div
@@ -246,7 +253,7 @@ function HomePage() {
                   stroke="currentColor"
                   style={{ color: 'var(--color-primary, #2563eb)' }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
             </div>
@@ -264,21 +271,21 @@ function HomePage() {
             className="text-2xl md:text-3xl font-bold text-white mb-4"
             style={{ fontFamily: 'var(--font-heading, system-ui)' }}
           >
-            Ready to Streamline Your Offhire Process?
+            Ready to Send Offhire Notifications?
           </h3>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Start sending automated SMS notifications to your customers today.
-            Upload your first list and see the journey in action.
+            Upload your customer list to start the SMS journey.
+            Customers will receive automated notifications at each stage of the return process.
           </p>
           <Link
-            href="/demo"
+            href="/offhire"
             className="inline-block px-8 py-4 bg-white rounded-lg font-semibold transition-all hover:scale-105"
             style={{
               color: 'var(--color-primary, #2563eb)',
               borderRadius: 'var(--radius, 8px)'
             }}
           >
-            Launch Demo
+            Upload Customer List
           </Link>
         </div>
       </section>
@@ -294,10 +301,10 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm opacity-80">
-              SMS Demo - Offhire Notifications System
+              Access Group - Offhire SMS Notification System
             </p>
             <p className="text-sm opacity-60">
-              Built with Builder.io + Iterable + Vercel
+              Internal Tool - Powered by Iterable
             </p>
           </div>
         </div>
