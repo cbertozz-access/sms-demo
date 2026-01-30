@@ -4,6 +4,7 @@ import React from 'react';
 import { Builder } from '@builder.io/react';
 import JourneyFlowchart from './JourneyFlowchart';
 import ListUploader from './ListUploader';
+import SmsApp from './SmsApp';
 
 // ============================================================================
 // THEMED UI COMPONENTS (use CSS variables for multi-brand support)
@@ -303,4 +304,11 @@ Builder.registerComponent(ThemedInfoBox, {
     { name: 'title', type: 'string', required: true, defaultValue: 'How it works' },
     { name: 'items', type: 'list', subFields: [{ name: 'item', type: 'string' }], defaultValue: ['Step 1', 'Step 2', 'Step 3'] },
   ],
+});
+
+// Full SMS Application (single-page app)
+Builder.registerComponent(SmsApp, {
+  name: 'SmsApp',
+  friendlyName: 'SMS Offhire App (Full)',
+  inputs: [],
 });

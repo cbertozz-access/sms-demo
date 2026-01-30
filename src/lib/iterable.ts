@@ -171,3 +171,123 @@ function formatPhoneE164(phone: string): string {
 
   return `+${digits}`;
 }
+
+// Trigger a workflow/journey for users (this sends the SMS)
+export async function triggerWorkflow(
+  workflowId: string,
+  users: Array<{ email: string; dataFields?: Record<string, string | number> }>
+): Promise<{ success: boolean; message: string; successCount?: number; failCount?: number }> {
+  const apiKey = process.env.ITERABLE_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('ITERABLE_API_KEY is not configured');
+  }
+
+  let successCount = 0;
+  let failCount = 0;
+
+  // Trigger workflow for each user
+  for (const user of users) {
+    const response = await fetch(`${ITERABLE_API_URL}/workflows/triggerWorkflow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Api-Key': apiKey,
+      },
+      body: JSON.stringify({
+        workflowId: parseInt(workflowId),
+        email: user.email,
+        dataFields: user.dataFields || {},
+      }),
+    });
+
+    if (response.ok) {
+      successCount++;
+    } else {
+      failCount++;
+    }
+  }
+
+  return {
+    success: failCount === 0,
+    message: `Triggered workflow for ${successCount} users${failCount > 0 ? `, ${failCount} failed` : ''}`,
+    successCount,
+    failCount,
+  };
+}
+
+// Send SMS directly via campaign trigger (requires campaignId set up in Iterable)
+export async function triggerSmsCampaign(
+  campaignId: string,
+  users: Array<{ email: string; dataFields?: Record<string, string | number> }>
+): Promise<{ success: boolean; message: string; successCount?: number; failCount?: number }> {
+  const apiKey = process.env.ITERABLE_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('ITERABLE_API_KEY is not configured');
+  }
+
+  let successCount = 0;
+  let failCount = 0;
+
+  // Trigger campaign for each user
+  for (const user of users) {
+    const response = await fetch(`${ITERABLE_API_URL}/campaigns/trigger`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Api-Key': apiKey,
+      },
+      body: JSON.stringify({
+        campaignId: parseInt(campaignId),
+        recipientEmail: user.email,
+        dataFields: user.dataFields || {},
+      }),
+    });
+
+    if (response.ok) {
+      successCount++;
+    } else {
+      failCount++;
+    }
+  }
+
+  return {
+    success: failCount === 0,
+    message: `Sent SMS to ${successCount} users${failCount > 0 ? `, ${failCount} failed` : ''}`,
+    successCount,
+    failCount,
+  };
+}
+
+// Upload users AND trigger SMS campaign in one step
+export async function uploadAndSendSms(
+  listName: string,
+  campaignId: string,
+  users: UserData[]
+): Promise<{ success: boolean; message: string; listId?: number; sentCount?: number }> {
+  // First upload users to Iterable
+  const uploadResult = await uploadUsersToList(listName, users);
+
+  if (!uploadResult.success) {
+    return {
+      success: false,
+      message: `Upload failed: ${uploadResult.message}`,
+    };
+  }
+
+  // Then trigger SMS campaign for all users
+  const usersForCampaign = users.map((u) => ({
+    email: u.email,
+    dataFields: u.dataFields,
+  }));
+
+  const sendResult = await triggerSmsCampaign(campaignId, usersForCampaign);
+
+  return {
+    success: sendResult.success,
+    message: `${uploadResult.message}. ${sendResult.message}`,
+    listId: uploadResult.listId,
+    sentCount: sendResult.successCount,
+  };
+}
