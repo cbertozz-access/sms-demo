@@ -17,45 +17,89 @@ export const brands: Record<string, BrandTheme> = {
     id: "access-hire",
     name: "Access Hire Australia",
     colors: {
+      // Full brand color scale (AHA Red)
       brand: {
         50: "rgb(255 229 233)",
         100: "rgb(255 204 211)",
         200: "rgb(255 160 170)",
         300: "rgb(255 109 127)",
         400: "rgb(245 60 89)",
-        500: "rgb(227 25 55)",
+        500: "rgb(227 25 55)", // Primary
         600: "rgb(193 21 47)",
         700: "rgb(161 18 40)",
         800: "rgb(132 16 32)",
         900: "rgb(94 11 23)",
         950: "rgb(94 11 23)",
       },
-      primary: "rgb(227 25 55)",
-      primaryHover: "rgb(132 16 32)",
-      primaryForeground: "rgb(255 229 233)",
-      secondary: "rgb(30 41 59)",
-      secondaryHover: "rgb(15 23 42)",
-      secondaryForeground: "rgb(248 250 252)",
-      accent: "rgb(30 41 59)",
+
+      // Semantic colors with hover states
+      primary: "rgb(227 25 55)", // brand-500
+      primaryHover: "rgb(132 16 32)", // brand-800
+      primaryForeground: "rgb(255 229 233)", // brand-50
+
+      secondary: "rgb(30 41 59)", // slate-800
+      secondaryHover: "rgb(15 23 42)", // slate-900
+      secondaryForeground: "rgb(248 250 252)", // slate-50
+
+      accent: "rgb(30 41 59)", // slate-800
       accentForeground: "rgb(255 255 255)",
+
+      // Backgrounds
       background: "rgb(255 255 255)",
-      backgroundAlt: "rgb(249 250 251)",
+      backgroundAlt: "rgb(255 255 255)", // white
       card: "rgb(255 255 255)",
-      cardForeground: "rgb(15 23 42)",
-      header: "rgb(255 255 255)",
-      headerForeground: "rgb(15 23 42)",
-      footer: "rgb(227 25 55)",
-      footerForeground: "rgb(255 255 255)",
-      foreground: "rgb(15 23 42)",
-      mutedForeground: "rgb(100 116 139)",
-      border: "rgb(226 232 240)",
-      input: "rgb(226 232 240)",
-      ring: "rgb(227 25 55)",
-      success: "rgb(34 197 94)",
-      successHover: "rgb(22 163 74)",
-      warning: "rgb(245 158 11)",
-      error: "rgb(239 68 68)",
-      errorHover: "rgb(220 38 38)",
+      cardForeground: "rgb(15 23 42)", // slate-900
+
+      // Header/Footer (Access Hire: white header, red footer)
+      header: "rgb(255 255 255)",        // white
+      headerForeground: "rgb(15 23 42)", // dark text
+      footer: "rgb(227 25 55)",          // brand red
+      footerForeground: "rgb(255 255 255)", // white text
+
+      // Text
+      foreground: "rgb(15 23 42)", // slate-900
+      mutedForeground: "rgb(100 116 139)", // slate-500
+
+      // Borders
+      border: "rgb(226 232 240)", // slate-200
+      input: "rgb(226 232 240)", // slate-200
+      ring: "rgb(227 25 55)", // brand-500
+
+      // Semantic status
+      success: "rgb(34 197 94)", // green-500
+      successHover: "rgb(22 163 74)", // green-600
+      warning: "rgb(245 158 11)", // amber-500
+      error: "rgb(239 68 68)", // red-500
+      errorHover: "rgb(220 38 38)", // red-600
+
+      // Equipment brand colors
+      equipmentBrands: {
+        genie: "#0064a7",
+        jlg: "#f37123",
+        haulotte: "#f1bd4b",
+        skyjack: "#e41e26",
+        snorkel: "#ff8200",
+        lgmg: "#00a651",
+        dingli: "#003da5",
+        manitou: "#b22234",
+        zoomlion: "#009b4c",
+        sunward: "#ffc72c",
+        niftylift: "#00a3e0",
+        aichi: "#e60012",
+        tadano: "#004c97",
+        sinoboom: "#ed1c24",
+        xcmg: "#ffc20e",
+        bobcat: "#ff6600",
+        jcb: "#ffc107",
+        merlo: "#004d40",
+        magni: "#00529f",
+        faresin: "#e30613",
+        almac: "#005bac",
+        airo: "#0072bc",
+        atrium: "#1a1a1a",
+        klubb: "#00a0dc",
+        palfinger: "#e30614",
+      },
     },
     fonts: {
       heading: "'Lato', system-ui, sans-serif",
@@ -73,50 +117,85 @@ export const brands: Record<string, BrandTheme> = {
     },
   },
 
-  // Brand 2: Access Express
+  // Brand 2: Access Express (Secondary Brand)
   "access-express": {
     id: "access-express",
     name: "Access Express",
     colors: {
+      // Full brand color scale (Deep Navy Blue)
       brand: {
-        50: "rgb(232 242 250)",
+        50: "rgb(232 242 250)",   // Lightest
         100: "rgb(192 216 236)",
         200: "rgb(138 176 212)",
         300: "rgb(90 132 176)",
         400: "rgb(58 100 144)",
-        500: "rgb(35 74 114)",
-        600: "rgb(26 58 92)",
-        700: "rgb(18 42 74)",
-        800: "rgb(13 30 54)",
-        900: "rgb(10 22 40)",
-        950: "rgb(5 12 20)",
+        500: "rgb(35 74 114)",    // Mid
+        600: "rgb(26 58 92)",     // #1a3a5c
+        700: "rgb(18 42 74)",     // #122a4a
+        800: "rgb(13 30 54)",     // #0d1e36
+        900: "rgb(10 22 40)",     // #0a1628 - Primary dark
+        950: "rgb(5 12 20)",      // Darkest
       },
-      primary: "rgb(10 22 40)",
-      primaryHover: "rgb(18 42 74)",
+
+      // Semantic colors - Navy/Black as primary
+      primary: "rgb(10 22 40)",        // Navy/black #0a1628
+      primaryHover: "rgb(18 42 74)",   // Lighter navy on hover
       primaryForeground: "rgb(255 255 255)",
-      secondary: "rgb(245 166 35)",
-      secondaryHover: "rgb(212 144 30)",
+
+      // Orange as secondary (for special CTAs)
+      secondary: "rgb(245 166 35)",    // Orange #f5a623
+      secondaryHover: "rgb(212 144 30)", // Orange pressed
       secondaryForeground: "rgb(255 255 255)",
-      accent: "rgb(0 168 232)",
+
+      // Blue accent for links and highlights
+      accent: "rgb(0 168 232)",        // #00a8e8
       accentForeground: "rgb(255 255 255)",
+
+      // Backgrounds - Light theme
       background: "rgb(255 255 255)",
-      backgroundAlt: "rgb(250 250 250)",
+      backgroundAlt: "rgb(250 250 250)", // neutral-50
       card: "rgb(255 255 255)",
-      cardForeground: "rgb(38 38 38)",
-      header: "rgb(10 22 40)",
-      headerForeground: "rgb(255 255 255)",
-      footer: "rgb(10 22 40)",
-      footerForeground: "rgb(255 255 255)",
-      foreground: "rgb(38 38 38)",
-      mutedForeground: "rgb(115 115 115)",
-      border: "rgb(229 229 229)",
-      input: "rgb(212 212 212)",
-      ring: "rgb(0 168 232)",
-      success: "rgb(34 197 94)",
-      successHover: "rgb(22 163 74)",
-      warning: "rgb(245 158 11)",
-      error: "rgb(239 68 68)",
-      errorHover: "rgb(220 38 38)",
+      cardForeground: "rgb(38 38 38)",   // neutral-800
+
+      // Header/Footer - Navy background (Access Express signature dark)
+      header: "rgb(10 22 40)",           // #0a1628 - Deep Navy
+      headerForeground: "rgb(255 255 255)", // white text
+      footer: "rgb(10 22 40)",           // #0a1628 - Deep Navy
+      footerForeground: "rgb(255 255 255)", // white text
+
+      // Text
+      foreground: "rgb(38 38 38)",       // neutral-800
+      mutedForeground: "rgb(115 115 115)", // neutral-500
+
+      // Borders
+      border: "rgb(229 229 229)",        // neutral-200
+      input: "rgb(212 212 212)",         // neutral-300
+      ring: "rgb(0 168 232)",            // accent blue for focus
+
+      // Semantic status
+      success: "rgb(34 197 94)",         // green-500
+      successHover: "rgb(22 163 74)",    // green-600
+      warning: "rgb(245 158 11)",        // amber-500
+      error: "rgb(239 68 68)",           // red-500
+      errorHover: "rgb(220 38 38)",      // red-600
+
+      // Equipment brand colors (shared with AHA)
+      equipmentBrands: {
+        genie: "#0064a7",
+        jlg: "#f37123",
+        haulotte: "#f1bd4b",
+        skyjack: "#e41e26",
+        snorkel: "#ff8200",
+        lgmg: "#00a651",
+        dingli: "#003da5",
+        manitou: "#b22234",
+        bobcat: "#ff6600",
+        jcb: "#ffc107",
+        merlo: "#004d40",
+        toyota: "#eb0a1e",
+        hyster: "#ff6600",
+        crown: "#00529f",
+      },
     },
     fonts: {
       heading: "'Montserrat', system-ui, sans-serif",
@@ -124,20 +203,20 @@ export const brands: Record<string, BrandTheme> = {
       mono: "'Fira Code', 'Consolas', monospace",
     },
     spacing: {
-      radius: "8px",
-      radiusSm: "4px",
-      radiusLg: "12px",
+      radius: "8px",     // Default for buttons, inputs
+      radiusSm: "4px",   // Subtle corners
+      radiusLg: "12px",  // Cards
     },
     assets: {
-      logoUrl: "/images/logos/ae-logo-white.png",
+      logoUrl: "/images/logos/ae-logo-white.png",  // White logo for dark header
       logoUrlDark: "/images/logos/ae-logo-white.png",
     },
   },
 
-  // Default/Demo Brand (Blue)
-  "default": {
-    id: "default",
-    name: "SMS Demo",
+  // Brand 3: Example Blue Brand
+  "brand-blue": {
+    id: "brand-blue",
+    name: "Blue Corp",
     colors: {
       brand: {
         50: "rgb(239 246 255)",
@@ -155,19 +234,15 @@ export const brands: Record<string, BrandTheme> = {
       primary: "rgb(37 99 235)",
       primaryHover: "rgb(29 78 216)",
       primaryForeground: "rgb(255 255 255)",
-      secondary: "rgb(100 116 139)",
-      secondaryHover: "rgb(71 85 105)",
+      secondary: "rgb(6 182 212)",
+      secondaryHover: "rgb(8 145 178)",
       secondaryForeground: "rgb(255 255 255)",
       accent: "rgb(6 182 212)",
       accentForeground: "rgb(255 255 255)",
-      background: "rgb(249 250 251)",
-      backgroundAlt: "rgb(255 255 255)",
+      background: "rgb(255 255 255)",
+      backgroundAlt: "rgb(240 249 255)",
       card: "rgb(255 255 255)",
       cardForeground: "rgb(15 23 42)",
-      header: "rgb(255 255 255)",
-      headerForeground: "rgb(15 23 42)",
-      footer: "rgb(30 41 59)",
-      footerForeground: "rgb(255 255 255)",
       foreground: "rgb(15 23 42)",
       mutedForeground: "rgb(100 116 139)",
       border: "rgb(226 232 240)",
@@ -180,23 +255,76 @@ export const brands: Record<string, BrandTheme> = {
       errorHover: "rgb(220 38 38)",
     },
     fonts: {
-      heading: "system-ui, sans-serif",
-      body: "system-ui, sans-serif",
-      mono: "'SF Mono', 'Monaco', 'Inconsolata', monospace",
+      heading: "'Lato', system-ui, sans-serif",
+      body: "'Roboto', system-ui, sans-serif",
+      mono: "'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace",
     },
     spacing: {
-      radius: "8px",
+      radius: "6px",
       radiusSm: "4px",
-      radiusLg: "12px",
+      radiusLg: "10px",
+    },
+  },
+
+  // Brand 3: Example Green Brand
+  "brand-green": {
+    id: "brand-green",
+    name: "Green Solutions",
+    colors: {
+      brand: {
+        50: "rgb(240 253 244)",
+        100: "rgb(220 252 231)",
+        200: "rgb(187 247 208)",
+        300: "rgb(134 239 172)",
+        400: "rgb(74 222 128)",
+        500: "rgb(34 197 94)",
+        600: "rgb(22 163 74)",
+        700: "rgb(21 128 61)",
+        800: "rgb(22 101 52)",
+        900: "rgb(20 83 45)",
+        950: "rgb(5 46 22)",
+      },
+      primary: "rgb(22 163 74)",
+      primaryHover: "rgb(21 128 61)",
+      primaryForeground: "rgb(255 255 255)",
+      secondary: "rgb(132 204 22)",
+      secondaryHover: "rgb(101 163 13)",
+      secondaryForeground: "rgb(255 255 255)",
+      accent: "rgb(132 204 22)",
+      accentForeground: "rgb(255 255 255)",
+      background: "rgb(255 255 255)",
+      backgroundAlt: "rgb(240 253 244)",
+      card: "rgb(255 255 255)",
+      cardForeground: "rgb(20 83 45)",
+      foreground: "rgb(20 83 45)",
+      mutedForeground: "rgb(75 85 99)",
+      border: "rgb(209 213 219)",
+      input: "rgb(209 213 219)",
+      ring: "rgb(22 163 74)",
+      success: "rgb(34 197 94)",
+      successHover: "rgb(22 163 74)",
+      warning: "rgb(245 158 11)",
+      error: "rgb(239 68 68)",
+      errorHover: "rgb(220 38 38)",
+    },
+    fonts: {
+      heading: "'Lato', system-ui, sans-serif",
+      body: "'Roboto', system-ui, sans-serif",
+      mono: "'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace",
+    },
+    spacing: {
+      radius: "4px",
+      radiusSm: "2px",
+      radiusLg: "8px",
     },
   },
 };
 
 // ============================================
-// DEFAULT BRAND
+// DEFAULT BRAND (Access Hire Australia)
 // ============================================
 
-export const defaultBrand: BrandTheme = brands["default"];
+export const defaultBrand: BrandTheme = brands["access-hire"];
 
 /**
  * Get a brand by ID with fallback to default
@@ -207,7 +335,7 @@ export function getBrand(brandId: string | undefined): BrandTheme {
 }
 
 /**
- * Get list of all available brands
+ * Get list of all available brands (for Builder.io enum)
  */
 export function getAllBrandIds(): string[] {
   return Object.keys(brands);

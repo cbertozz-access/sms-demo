@@ -1,8 +1,8 @@
 /**
  * Brand Theme Type Definitions
  *
- * Supports multiple brands with consistent token structure.
- * Tokens are aligned with Figma variables.
+ * Supports up to 20+ brands with consistent token structure.
+ * Tokens are aligned with Figma variables from Whitelabel Master File.
  */
 
 export interface ColorScale {
@@ -41,7 +41,7 @@ export interface BrandColors {
   card: string;
   cardForeground: string;
 
-  // Header/Footer specific
+  // Header/Footer specific (for brand-aware layout)
   header?: string;
   headerForeground?: string;
   footer?: string;
@@ -62,11 +62,14 @@ export interface BrandColors {
   warning: string;
   error: string;
   errorHover: string;
+
+  // Equipment brand colors (optional)
+  equipmentBrands?: Record<string, string>;
 }
 
 export interface BrandAssets {
   logoUrl?: string;
-  logoUrlDark?: string;
+  logoUrlDark?: string;  // For dark backgrounds
   faviconUrl?: string;
 }
 
@@ -93,6 +96,7 @@ export interface BrandTheme {
 
 /**
  * Builder.io Brand Data Model shape
+ * This matches what you'll create in Builder.io's Data Models
  */
 export interface BuilderBrandModel {
   id: string;

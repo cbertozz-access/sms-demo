@@ -8,6 +8,91 @@
 import type { BrandTheme } from "./types";
 
 /**
+ * Generate CSS variables string from a brand theme
+ */
+export function generateCssVariables(theme: BrandTheme): string {
+  const lines: string[] = [];
+
+  // Brand color scale
+  lines.push(`--color-brand-50: ${theme.colors.brand[50]};`);
+  lines.push(`--color-brand-100: ${theme.colors.brand[100]};`);
+  lines.push(`--color-brand-200: ${theme.colors.brand[200]};`);
+  lines.push(`--color-brand-300: ${theme.colors.brand[300]};`);
+  lines.push(`--color-brand-400: ${theme.colors.brand[400]};`);
+  lines.push(`--color-brand-500: ${theme.colors.brand[500]};`);
+  lines.push(`--color-brand-600: ${theme.colors.brand[600]};`);
+  lines.push(`--color-brand-700: ${theme.colors.brand[700]};`);
+  lines.push(`--color-brand-800: ${theme.colors.brand[800]};`);
+  lines.push(`--color-brand-900: ${theme.colors.brand[900]};`);
+  lines.push(`--color-brand-950: ${theme.colors.brand[950]};`);
+
+  // Semantic colors with hover states
+  lines.push(`--color-primary: ${theme.colors.primary};`);
+  lines.push(`--color-primary-hover: ${theme.colors.primaryHover};`);
+  lines.push(`--color-primary-foreground: ${theme.colors.primaryForeground};`);
+
+  lines.push(`--color-secondary: ${theme.colors.secondary};`);
+  lines.push(`--color-secondary-hover: ${theme.colors.secondaryHover};`);
+  lines.push(`--color-secondary-foreground: ${theme.colors.secondaryForeground};`);
+
+  lines.push(`--color-accent: ${theme.colors.accent};`);
+  lines.push(`--color-accent-foreground: ${theme.colors.accentForeground};`);
+
+  // Backgrounds
+  lines.push(`--color-background: ${theme.colors.background};`);
+  lines.push(`--color-background-alt: ${theme.colors.backgroundAlt};`);
+  lines.push(`--color-card: ${theme.colors.card};`);
+  lines.push(`--color-card-foreground: ${theme.colors.cardForeground};`);
+
+  // Header/Footer
+  if (theme.colors.header) {
+    lines.push(`--color-header: ${theme.colors.header};`);
+    lines.push(`--color-header-foreground: ${theme.colors.headerForeground || theme.colors.foreground};`);
+  }
+  if (theme.colors.footer) {
+    lines.push(`--color-footer: ${theme.colors.footer};`);
+    lines.push(`--color-footer-foreground: ${theme.colors.footerForeground || "rgb(255 255 255)"};`);
+  }
+
+  // Text
+  lines.push(`--color-foreground: ${theme.colors.foreground};`);
+  lines.push(`--color-muted-foreground: ${theme.colors.mutedForeground};`);
+
+  // Borders
+  lines.push(`--color-border: ${theme.colors.border};`);
+  lines.push(`--color-input: ${theme.colors.input};`);
+  lines.push(`--color-ring: ${theme.colors.ring};`);
+
+  // Semantic status
+  lines.push(`--color-success: ${theme.colors.success};`);
+  lines.push(`--color-success-hover: ${theme.colors.successHover};`);
+  lines.push(`--color-warning: ${theme.colors.warning};`);
+  lines.push(`--color-error: ${theme.colors.error};`);
+  lines.push(`--color-error-hover: ${theme.colors.errorHover};`);
+
+  // Typography
+  lines.push(`--font-heading: ${theme.fonts.heading};`);
+  lines.push(`--font-body: ${theme.fonts.body};`);
+  if (theme.fonts.mono) {
+    lines.push(`--font-mono: ${theme.fonts.mono};`);
+  }
+
+  // Spacing
+  lines.push(`--radius: ${theme.spacing.radius};`);
+  lines.push(`--radius-sm: ${theme.spacing.radiusSm};`);
+  lines.push(`--radius-lg: ${theme.spacing.radiusLg};`);
+
+  // Equipment brand colors
+  if (theme.colors.equipmentBrands) {
+    for (const [brand, color] of Object.entries(theme.colors.equipmentBrands)) {
+      lines.push(`--color-equipment-brand-${brand}: ${color};`);
+    }
+  }
+
+  return lines.join("\n    ");
+}
+
+/**
  * Generate CSS variables as a style object (for inline styles)
  */
 export function generateCssVariablesObject(
@@ -82,6 +167,13 @@ export function generateCssVariablesObject(
     vars["--font-mono"] = theme.fonts.mono;
   }
 
+  // Add equipment brand colors if present
+  if (theme.colors.equipmentBrands) {
+    for (const [brand, color] of Object.entries(theme.colors.equipmentBrands)) {
+      vars[`--color-equipment-brand-${brand}`] = color;
+    }
+  }
+
   // Add asset URLs if present
   if (theme.assets?.logoUrl) {
     vars["--logo-url"] = `url(${theme.assets.logoUrl})`;
@@ -140,7 +232,7 @@ export const themeClasses = {
   bgAlt: "bg-[var(--color-background-alt)]",
   bgCard: "bg-[var(--color-card)]",
 
-  // Text colors
+  // Highlight
   textPrimary: "text-[var(--color-primary)]",
   textSecondary: "text-[var(--color-secondary)]",
   textSuccess: "text-[var(--color-success)]",
