@@ -36,10 +36,22 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: "SMS Demo - Offhire Notifications",
-  description: "SMS notification system for offhire using Builder.io, Vercel, and Iterable",
+  description: "Internal tool for Access Group - SMS notification system for offhire",
   robots: {
     index: false,
     follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'none',
+      'max-snippet': -1,
+    },
+  },
+  other: {
+    'robots': 'noindex, nofollow, noarchive, nosnippet, noimageindex',
   },
 };
 

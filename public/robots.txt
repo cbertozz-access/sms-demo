@@ -1,0 +1,5 @@
+# Block all search engines from indexing this internal tool
+User-agent: *
+Disallow: /
+
+# No sitemap - internal application
