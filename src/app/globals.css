@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
+/**
+ * Builder.io Block Resets
+ */
+.builder-block {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+[builder-component] > div:first-child {
+  margin-top: 0 !important;
+}
+
+/**
+ * Brand Theme CSS Variables
+ *
+ * Default values - overridden by ThemeProvider at runtime.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand color scale (Default Blue) */
+  --color-brand-50: rgb(239 246 255);
+  --color-brand-100: rgb(219 234 254);
+  --color-brand-200: rgb(191 219 254);
+  --color-brand-300: rgb(147 197 253);
+  --color-brand-400: rgb(96 165 250);
+  --color-brand-500: rgb(59 130 246);
+  --color-brand-600: rgb(37 99 235);
+  --color-brand-700: rgb(29 78 216);
+  --color-brand-800: rgb(30 64 175);
+  --color-brand-900: rgb(30 58 138);
+  --color-brand-950: rgb(23 37 84);
+
+  /* Semantic colors with hover states */
+  --color-primary: var(--color-brand-600);
+  --color-primary-hover: var(--color-brand-700);
+  --color-primary-foreground: rgb(255 255 255);
+
+  --color-secondary: rgb(100 116 139);
+  --color-secondary-hover: rgb(71 85 105);
+  --color-secondary-foreground: rgb(255 255 255);
+
+  --color-accent: rgb(6 182 212);
+  --color-accent-foreground: rgb(255 255 255);
+
+  /* Backgrounds */
+  --color-background: rgb(249 250 251);
+  --color-background-alt: rgb(255 255 255);
+  --color-card: rgb(255 255 255);
+  --color-card-foreground: rgb(15 23 42);
+
+  /* Header/Footer */
+  --color-header: rgb(255 255 255);
+  --color-header-foreground: rgb(15 23 42);
+  --color-footer: rgb(30 41 59);
+  --color-footer-foreground: rgb(255 255 255);
+
+  /* Text */
+  --color-foreground: rgb(15 23 42);
+  --color-muted-foreground: rgb(100 116 139);
+
+  /* Borders */
+  --color-border: rgb(226 232 240);
+  --color-input: rgb(226 232 240);
+  --color-ring: var(--color-brand-500);
+
+  /* Semantic status */
+  --color-success: rgb(34 197 94);
+  --color-success-hover: rgb(22 163 74);
+  --color-warning: rgb(245 158 11);
+  --color-error: rgb(239 68 68);
+  --color-error-hover: rgb(220 38 38);
+
+  /* Typography */
+  --font-heading: system-ui, sans-serif;
+  --font-body: system-ui, sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Code", monospace;
+
+  /* Spacing */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+}
+
+/**
+ * Utility classes for theme-aware styling
+ */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-hover {
+  background-color: var(--color-primary-hover);
+}
+
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.ring-primary {
+  --tw-ring-color: var(--color-primary);
+}
+
+/* Heading typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }

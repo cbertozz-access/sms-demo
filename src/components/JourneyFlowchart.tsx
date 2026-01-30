@@ -25,33 +25,32 @@ const JOURNEY_STEPS: JourneyStep[] = [
 export default function JourneyFlowchart({ currentStep }: JourneyFlowchartProps) {
   const getStepStyles = (step: JourneyStep) => {
     const isActive = step.id === currentStep;
-
-    const baseStyles = 'px-4 py-3 rounded-lg text-center transition-all';
+    const baseStyles = 'px-4 py-3 rounded-[var(--radius)] text-center transition-all';
 
     switch (step.type) {
       case 'trigger':
         return `${baseStyles} ${
           isActive
-            ? 'bg-green-500 text-white ring-2 ring-green-300'
-            : 'bg-green-100 text-green-800'
+            ? 'bg-[var(--color-success)] text-white ring-2 ring-[var(--color-success)]'
+            : 'bg-[color-mix(in_srgb,var(--color-success)_15%,white)] text-[var(--color-success)]'
         }`;
       case 'action':
         return `${baseStyles} ${
           isActive
-            ? 'bg-blue-500 text-white ring-2 ring-blue-300'
-            : 'bg-blue-100 text-blue-800'
+            ? 'bg-[var(--color-primary)] text-[var(--color-primary-foreground)] ring-2 ring-[var(--color-ring)]'
+            : 'bg-[var(--color-brand-50)] text-[var(--color-primary)]'
         }`;
       case 'condition':
         return `${baseStyles} ${
           isActive
-            ? 'bg-amber-500 text-white ring-2 ring-amber-300'
-            : 'bg-amber-100 text-amber-800'
+            ? 'bg-[var(--color-warning)] text-white ring-2 ring-[var(--color-warning)]'
+            : 'bg-[color-mix(in_srgb,var(--color-warning)_15%,white)] text-[var(--color-warning)]'
         }`;
       case 'end':
         return `${baseStyles} ${
           isActive
-            ? 'bg-gray-500 text-white ring-2 ring-gray-300'
-            : 'bg-gray-100 text-gray-800'
+            ? 'bg-[var(--color-secondary)] text-[var(--color-secondary-foreground)] ring-2 ring-[var(--color-secondary)]'
+            : 'bg-[var(--color-background-alt)] text-[var(--color-muted-foreground)]'
         }`;
       default:
         return baseStyles;
@@ -88,8 +87,8 @@ export default function JourneyFlowchart({ currentStep }: JourneyFlowchartProps)
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+    <div className="bg-[var(--color-card)] rounded-[var(--radius-lg)] shadow-md p-6">
+      <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-4">
         Offhire SMS Journey
       </h2>
 
@@ -102,31 +101,31 @@ export default function JourneyFlowchart({ currentStep }: JourneyFlowchartProps)
             </div>
 
             {index < JOURNEY_STEPS.length - 1 && (
-              <div className="h-6 w-0.5 bg-gray-300" />
+              <div className="h-6 w-0.5 bg-[var(--color-border)]" />
             )}
           </div>
         ))}
       </div>
 
       {/* Legend */}
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <p className="text-xs text-gray-500 mb-2">Legend:</p>
+      <div className="mt-6 pt-4 border-t border-[var(--color-border)]">
+        <p className="text-xs text-[var(--color-muted-foreground)] mb-2">Legend:</p>
         <div className="flex flex-wrap gap-4 text-xs">
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded bg-green-100" />
-            <span className="text-gray-600">Trigger</span>
+            <div className="w-3 h-3 rounded-[var(--radius-sm)] bg-[color-mix(in_srgb,var(--color-success)_15%,white)]" />
+            <span className="text-[var(--color-muted-foreground)]">Trigger</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded bg-blue-100" />
-            <span className="text-gray-600">Action</span>
+            <div className="w-3 h-3 rounded-[var(--radius-sm)] bg-[var(--color-brand-50)]" />
+            <span className="text-[var(--color-muted-foreground)]">Action</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded bg-amber-100" />
-            <span className="text-gray-600">Wait</span>
+            <div className="w-3 h-3 rounded-[var(--radius-sm)] bg-[color-mix(in_srgb,var(--color-warning)_15%,white)]" />
+            <span className="text-[var(--color-muted-foreground)]">Wait</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded bg-gray-100" />
-            <span className="text-gray-600">End</span>
+            <div className="w-3 h-3 rounded-[var(--radius-sm)] bg-[var(--color-background-alt)]" />
+            <span className="text-[var(--color-muted-foreground)]">End</span>
           </div>
         </div>
       </div>

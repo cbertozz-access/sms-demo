@@ -41,7 +41,6 @@ export default function ListUploader() {
 
     const headers = lines[0].split(',').map((h) => h.trim().toLowerCase());
 
-    // Required columns
     const emailIndex = headers.findIndex((h) => h === 'email');
     const phoneIndex = headers.findIndex((h) => h === 'phone');
 
@@ -52,7 +51,6 @@ export default function ListUploader() {
       throw new Error('CSV must have a "phone" column');
     }
 
-    // Optional columns
     const nameIndex = headers.findIndex((h) => h === 'customername' || h === 'name');
     const contractIndex = headers.findIndex((h) => h === 'contractid' || h === 'contract');
     const makeIndex = headers.findIndex((h) => h === 'vehiclemake' || h === 'make');
@@ -66,7 +64,7 @@ export default function ListUploader() {
       const values = lines[i].split(',').map((v) => v.trim());
 
       if (values.length < 2 || !values[emailIndex] || !values[phoneIndex]) {
-        continue; // Skip empty or invalid rows
+        continue;
       }
 
       parsedUsers.push({
@@ -146,29 +144,29 @@ export default function ListUploader() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+    <div className="bg-[var(--color-card)] rounded-[var(--radius-lg)] shadow-md p-6">
+      <h2 className="text-xl font-semibold text-[var(--color-foreground)] mb-4">
         Upload Offhire List
       </h2>
 
       <div className="space-y-4">
         {/* List name input */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-[var(--color-foreground)] mb-1">
             List Name
           </label>
           <input
             type="text"
             value={listName}
             onChange={(e) => setListName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-[var(--color-input)] rounded-[var(--radius-sm)] bg-[var(--color-background)] text-[var(--color-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)]"
             placeholder="e.g., Offhire_2024-01-30"
           />
         </div>
 
         {/* File upload */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-[var(--color-foreground)] mb-1">
             CSV File
           </label>
           <input
@@ -176,49 +174,49 @@ export default function ListUploader() {
             type="file"
             accept=".csv"
             onChange={handleFileSelect}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:bg-blue-50 file:text-blue-700 file:cursor-pointer"
+            className="w-full px-3 py-2 border border-[var(--color-input)] rounded-[var(--radius-sm)] bg-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)] file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:bg-[var(--color-brand-50)] file:text-[var(--color-primary)] file:cursor-pointer"
           />
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-[var(--color-muted-foreground)] mt-1">
             Required columns: email, phone. Optional: customerName, contractId, vehicleMake, vehicleModel, pickupLocation, returnDate
           </p>
         </div>
 
         {/* Parse error */}
         {parseError && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-sm text-red-800">{parseError}</p>
+          <div className="p-3 bg-[color-mix(in_srgb,var(--color-error)_10%,white)] border border-[var(--color-error)] rounded-[var(--radius-sm)]">
+            <p className="text-sm text-[var(--color-error)]">{parseError}</p>
           </div>
         )}
 
         {/* Preview */}
         {users.length > 0 && (
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-2">
+            <p className="text-sm font-medium text-[var(--color-foreground)] mb-2">
               Preview ({users.length} users)
             </p>
-            <div className="max-h-48 overflow-y-auto border border-gray-200 rounded-md">
+            <div className="max-h-48 overflow-y-auto border border-[var(--color-border)] rounded-[var(--radius-sm)]">
               <table className="min-w-full text-xs">
-                <thead className="bg-gray-50 sticky top-0">
+                <thead className="bg-[var(--color-background-alt)] sticky top-0">
                   <tr>
-                    <th className="px-2 py-1 text-left">Email</th>
-                    <th className="px-2 py-1 text-left">Phone</th>
-                    <th className="px-2 py-1 text-left">Name</th>
-                    <th className="px-2 py-1 text-left">Contract</th>
+                    <th className="px-2 py-1 text-left text-[var(--color-foreground)]">Email</th>
+                    <th className="px-2 py-1 text-left text-[var(--color-foreground)]">Phone</th>
+                    <th className="px-2 py-1 text-left text-[var(--color-foreground)]">Name</th>
+                    <th className="px-2 py-1 text-left text-[var(--color-foreground)]">Contract</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.slice(0, 10).map((user, i) => (
-                    <tr key={i} className="border-t border-gray-100">
-                      <td className="px-2 py-1">{user.email}</td>
-                      <td className="px-2 py-1">{user.phone}</td>
-                      <td className="px-2 py-1">{user.customerName || '-'}</td>
-                      <td className="px-2 py-1">{user.contractId || '-'}</td>
+                    <tr key={i} className="border-t border-[var(--color-border)]">
+                      <td className="px-2 py-1 text-[var(--color-foreground)]">{user.email}</td>
+                      <td className="px-2 py-1 text-[var(--color-foreground)]">{user.phone}</td>
+                      <td className="px-2 py-1 text-[var(--color-foreground)]">{user.customerName || '-'}</td>
+                      <td className="px-2 py-1 text-[var(--color-foreground)]">{user.contractId || '-'}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               {users.length > 10 && (
-                <p className="text-xs text-gray-500 p-2 text-center">
+                <p className="text-xs text-[var(--color-muted-foreground)] p-2 text-center">
                   ...and {users.length - 10} more
                 </p>
               )}
@@ -229,15 +227,15 @@ export default function ListUploader() {
         {/* Result */}
         {result && (
           <div
-            className={`p-3 rounded-md ${
+            className={`p-3 rounded-[var(--radius-sm)] ${
               result.success
-                ? 'bg-green-50 border border-green-200'
-                : 'bg-red-50 border border-red-200'
+                ? 'bg-[color-mix(in_srgb,var(--color-success)_10%,white)] border border-[var(--color-success)]'
+                : 'bg-[color-mix(in_srgb,var(--color-error)_10%,white)] border border-[var(--color-error)]'
             }`}
           >
             <p
               className={`text-sm ${
-                result.success ? 'text-green-800' : 'text-red-800'
+                result.success ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'
               }`}
             >
               {result.success ? '✓ ' : '✗ '}
@@ -250,10 +248,10 @@ export default function ListUploader() {
         <button
           onClick={handleUpload}
           disabled={isUploading || !listName || users.length === 0}
-          className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
+          className={`w-full py-3 px-4 rounded-[var(--radius)] font-medium transition-colors ${
             isUploading || !listName || users.length === 0
-              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700 text-white'
+              ? 'bg-[var(--color-border)] text-[var(--color-muted-foreground)] cursor-not-allowed'
+              : 'bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-primary-foreground)]'
           }`}
         >
           {isUploading ? 'Uploading...' : `Upload ${users.length} Users to Iterable`}
@@ -261,8 +259,8 @@ export default function ListUploader() {
       </div>
 
       {/* Template download */}
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <p className="text-sm text-gray-600 mb-2">Need a template?</p>
+      <div className="mt-6 pt-4 border-t border-[var(--color-border)]">
+        <p className="text-sm text-[var(--color-muted-foreground)] mb-2">Need a template?</p>
         <button
           onClick={() => {
             const template = 'email,phone,customerName,contractId,vehicleMake,vehicleModel,pickupLocation,returnDate\njohn@example.com,+15551234567,John Doe,C-12345,Toyota,Camry,LAX Airport,2024-02-01';
@@ -274,7 +272,7 @@ export default function ListUploader() {
             a.click();
             URL.revokeObjectURL(url);
           }}
-          className="text-sm text-blue-600 hover:text-blue-700 underline"
+          className="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] underline"
         >
           Download CSV Template
         </button>
