@@ -23,18 +23,20 @@ export default async function Page({ params }: PageProps) {
     })
     .toPromise();
 
-  // If no Builder content, show appropriate default page
-  if (!content) {
-    if (urlPath === '/') {
-      return <HomePage />;
-    }
-    if (urlPath === '/offhire') {
-      return <OffhirePage />;
-    }
-    return <NotFoundPage />;
+  // Determine the fallback component based on URL
+  let fallback = <NotFoundPage />;
+  if (urlPath === '/') {
+    fallback = <HomePage />;
+  } else if (urlPath === '/offhire') {
+    fallback = <OffhirePage />;
   }
 
-  return <RenderBuilderContent content={content} model="page" />;
+  // Always render RenderBuilderContent - it handles preview mode and fallbacks
+  return (
+    <RenderBuilderContent content={content} model="page">
+      {fallback}
+    </RenderBuilderContent>
+  );
 }
 
 // ============================================================================
